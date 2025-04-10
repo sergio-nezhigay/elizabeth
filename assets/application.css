@@ -229,11 +229,17 @@
   .absolute {
     position: absolute;
   }
+  .fixed {
+    position: fixed;
+  }
   .relative {
     position: relative;
   }
   .sticky {
     position: sticky;
+  }
+  .inset-0 {
+    inset: calc(var(--spacing) * 0);
   }
   .inset-x-0 {
     inset-inline: calc(var(--spacing) * 0);
@@ -244,11 +250,20 @@
   .top-5 {
     top: calc(var(--spacing) * 5);
   }
+  .top-20 {
+    top: calc(var(--spacing) * 20);
+  }
   .right-0 {
     right: calc(var(--spacing) * 0);
   }
+  .bottom-20 {
+    bottom: calc(var(--spacing) * 20);
+  }
   .z-10 {
     z-index: 10;
+  }
+  .z-50 {
+    z-index: 50;
   }
   .container {
     width: 100%;
@@ -391,9 +406,6 @@
   .inline-flex {
     display: inline-flex;
   }
-  .table {
-    display: table;
-  }
   .table-row {
     display: table-row;
   }
@@ -440,9 +452,6 @@
   }
   .min-h-80 {
     min-height: calc(var(--spacing) * 80);
-  }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
@@ -492,9 +501,6 @@
   .table-auto {
     table-layout: auto;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .origin-top-left {
     transform-origin: top left;
   }
@@ -511,9 +517,6 @@
   }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
   }
   .resize-none {
     resize: none;
@@ -629,6 +632,9 @@
   .overflow-hidden {
     overflow: hidden;
   }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
   .rounded {
     border-radius: 0.25rem;
   }
@@ -657,6 +663,9 @@
   }
   .border-gray-600 {
     border-color: var(--color-gray-600);
+  }
+  .border-gray-700 {
+    border-color: var(--color-gray-700);
   }
   .border-red-400 {
     border-color: var(--color-red-400);
@@ -905,10 +914,6 @@
   }
   .ring-black {
     --tw-ring-color: var(--color-black);
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter;
@@ -1390,11 +1395,6 @@
   syntax: "*";
   inherits: false;
   initial-value: 0 0 #0000;
-}
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
 }
 @property --tw-duration {
   syntax: "*";
