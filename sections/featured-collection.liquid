@@ -1,49 +1,78 @@
-<div class="flex flex-col items-center my-8">
-    <h1 class="text-center text-3xl">{{ section.settings.title }}</h1>
-
-    <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products_to_show %}
-                {% render 'product-card', product_product: product %}
-            {% else %}
-                {% for item in (1..4) %}
-                    {% render 'product-card-placeholder' %}
-                {% endfor %}
-            {% endfor %}
-        </div>
-    </div>
-</div>
-
-
-
 {% schema %}
 {
-    "name": "Featured Collection",
-    "settings": [
-        {
-            "type": "text",
-            "id": "title",
-            "default": "Featured Collection",
-            "label": "Title"
-        },
-        {
-            "type": "collection",
-            "id": "featured_collection",
-            "label": "Collection"
-        },
-        {
-            "type": "range",
-            "id": "number_of_products_to_show",
-            "min": 4,
-            "max": 12,
-            "default": 4,
-            "label": "Number of products to show"
-        }
-    ],
-    "presets": [
-        {
-            "name": "Featured Collection"
-        }
-    ]
+  "name": "Pricing Plans",
+  "settings": [],
+  "presets": [{ "name": "Pricing Plans" }]
 }
 {% endschema %}
+
+<div x-data="{ animal: 'cat' }" class="py-12 bg-blue-50">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <!-- Tabs -->
+    <div class="flex justify-center gap-4 mb-8">
+      <button
+        @click="animal = 'dog'"
+        :class="animal === 'dog' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'"
+        class="px-4 py-2 text-lg font-semibold"
+      >
+        Dog
+      </button>
+      <button
+        @click="animal = 'cat'"
+        :class="animal === 'cat' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'"
+        class="px-4 py-2 text-lg font-semibold"
+      >
+        Cat
+      </button>
+    </div>
+
+    <div class="relative min-h-[420px]">
+      <!-- Ensure enough height for both swipers -->
+      <!-- CAT Swiper -->
+      <div
+        x-show="animal === 'cat'"
+
+        class="swiper pricingSwiper mb-8 absolute inset-0"
+        x-cloak
+      >
+        <div class="swiper-wrapper">
+          {% for product in collections['cat-products'].products %}
+            {% render 'animal-card', product: product %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- DOG Swiper -->
+      <div
+        x-show="animal === 'dog'"
+
+        class="swiper pricingSwiper mb-8 absolute inset-0"
+        x-cloak
+      >
+        <div class="swiper-wrapper">
+          {% for product in collections['dog-products'].products %}
+            {% render 'animal-card', product: product %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Swiper CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.pricingSwiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      breakpoints: {
+        768: {
+          slidesPerView: 'auto',
+        },
+      },
+    });
+  });
+</script>

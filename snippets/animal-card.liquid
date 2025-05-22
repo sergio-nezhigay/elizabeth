@@ -1,0 +1,21 @@
+<div class="swiper-slide">
+  <div class="bg-white rounded-xl shadow p-6 flex flex-col items-start text-left h-full">
+    <h3 class="text-lg font-semibold mb-2">{{ product.title }}</h3>
+    <img src="{{ product.featured_image | img_url: '400x' }}" class="w-full h-auto rounded mb-4" />
+    <p class="text-lg font-bold mb-2">{{ product.price | money }}</p>
+    <ul class="text-sm space-y-1 mb-4">
+      {% for tag in product.tags %}
+        <li>✔ {{ tag }}</li>
+      {% endfor %}
+    </ul>
+    <a href="{{ product.url }}" class="mt-auto bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold">Buy Now</a>
+  </div>
+</div>
+
+<style>
+  .swiper-slide {
+    width: 362px !important;
+    display: flex;
+    justify-content: center;
+  }
+</style>
