@@ -9,21 +9,19 @@
 <div x-data="{ animal: 'cat' }" class="py-12 bg-blue-50">
   <div class="max-w-7xl mx-auto px-4 text-center">
     <!-- Tabs -->
-    <div class="flex justify-center gap-4 mb-8">
-      <button
-        @click="animal = 'dog'"
-        :class="animal === 'dog' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'"
-        class="px-4 py-2 text-lg font-semibold"
-      >
-        Dog
-      </button>
-      <button
-        @click="animal = 'cat'"
-        :class="animal === 'cat' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'"
-        class="px-4 py-2 text-lg font-semibold"
-      >
-        Cat
-      </button>
+    <div class="flex justify-center mb-8 relative w-fit mx-auto">
+      {% render 'animal-tab-button',
+        animal_type: 'dog',
+        animal_label: 'Dog',
+        icon: 'icon-dog',
+        underline_direction: 'underline-animate-right'
+      %}
+      {% render 'animal-tab-button',
+        animal_type: 'cat',
+        animal_label: 'Cat',
+        icon: 'icon-cat',
+        underline_direction: 'underline-animate-left'
+      %}
     </div>
 
     <div class="relative min-h-[420px]">
@@ -31,8 +29,8 @@
       <!-- CAT Swiper -->
       <div
         x-show="animal === 'cat'"
-
-        class="swiper pricingSwiper mb-8 absolute inset-0"
+        x-transition.opacity.duration.1000ms
+        class="swiper pricingSwiper mb-8 !absolute inset-0"
         x-cloak
       >
         <div class="swiper-wrapper">
@@ -45,8 +43,8 @@
       <!-- DOG Swiper -->
       <div
         x-show="animal === 'dog'"
-
-        class="swiper pricingSwiper mb-8 absolute inset-0"
+        x-transition.opacity.duration.1000ms
+        class="swiper pricingSwiper mb-8 !absolute inset-0"
         x-cloak
       >
         <div class="swiper-wrapper">
@@ -76,3 +74,12 @@
     });
   });
 </script>
+
+<style>
+  .filter-blue {
+    filter: invert(32%) sepia(98%) saturate(7497%) hue-rotate(212deg) brightness(97%) contrast(101%);
+  }
+  .filter-gray {
+    filter: grayscale(1) brightness(0.7);
+  }
+</style>
