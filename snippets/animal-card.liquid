@@ -17,25 +17,24 @@
     when 'popular'
       assign badge_text = 'Most popular'
       assign badge_color = 'bg-orange-500'
-      assign border_color = 'border-orange-200'
+
     when 'best_value'
       assign badge_text = 'Best value'
       assign badge_color = 'bg-gray-900'
-      assign border_color = 'border-gray-200'
+
     else
       assign badge_text = ''
       assign badge_color = ''
-      assign border_color = 'border-gray-200'
   endcase
 %}
 
-<div class="swiper-slide relative bg-white rounded-lg shadow-sm border {{ border_color }} hover:shadow-md transition-shadow duration-200 py-10 px-[25px] h-full flex flex-col">
+<div class="swiper-slide relative bg-white rounded-[20px] shadow-[0px_2px_8px_rgba(16,16,17,0.15)] duration-200 py-10 px-[25px] h-full flex flex-col">
   {% comment %} Badge {% endcomment %}
   {% if badge_text != blank %}
     <div class="absolute top-0 left-0 z-10 h-fit">
-      <div class="inline-block {{ badge_color }} text-white h-6  font-semibold  custom-rounded">
+      <span class="inline-block {{ badge_color }} text-white text-center h-6 w-[130px]  custom-rounded">
         {{ badge_text }}
-      </div>
+      </span>
     </div>
   {% endif %}
 
