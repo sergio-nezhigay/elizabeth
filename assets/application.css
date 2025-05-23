@@ -1503,17 +1503,20 @@
 }
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('{{ "UntitledSansWeb-Regular.woff2" | asset_url }}') format('woff2');
+  src: url('/assets/UntitledSansWeb-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('{{ "UntitledSansWeb-Medium.woff2" | asset_url }}') format('woff2');
+  src: url('/assets/UntitledSansWeb-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+}
+body {
+  font-family: var(--font-sans);
 }
 .h-94 {
   height: var(--spacing-94);
