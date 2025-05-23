@@ -6,7 +6,10 @@
 }
 {% endschema %}
 
-<div x-data="{ animal: 'dog' }" class="pt-[30px] font-medium text-[14px] leading-[20px] tracking-[0.25px]">
+<div
+  x-data="{ animal: 'dog' }"
+  class="pt-[30px] font-medium text-[#101011] text-[14px] leading-[20px] tracking-[0.25px] dual-bg"
+>
   <div class="mx-auto">
     <!-- Tabs -->
     <div class="relative w-full buttons-line">
@@ -31,10 +34,10 @@
         x-show="animal === 'cat'"
         x-transition.opacity.duration.1000ms
         :class="animal !== 'cat' && '!absolute inset-0'"
-        class="swiper pricingSwiper mb-8 h-fit"
+        class="swiper pricingSwiper h-fit"
         x-cloak
       >
-        <div class="swiper-wrapper mx-auto !w-fit py-[60px]">
+        <div class="swiper-wrapper !w-fit mx-auto pt-[60px] pb-8 px-[30px]">
           {% for product in collections['cat-products'].products %}
             {% render 'animal-card', product: product %}
           {% endfor %}
@@ -46,19 +49,30 @@
         x-show="animal === 'dog'"
         x-transition.opacity.duration.1000ms
         :class="animal !== 'dog' && '!absolute inset-0'"
-        class="swiper pricingSwiper mb-8 h-fit"
+        class="swiper pricingSwiper h-fit"
         x-cloak
       >
-        <div class="swiper-wrapper !w-fit mx-auto py-[60px]">
+        <div class="swiper-wrapper !w-fit mx-auto pt-[60px] pb-8 px-[30px]">
           {% for product in collections['dog-products'].products %}
             {% render 'animal-card', product: product %}
           {% endfor %}
         </div>
       </div>
     </div>
+    <p class="text-[21px] leading-7 font-normal flex justify-center tracking-normal mb-2">
+      Not sure which is the best fit?
+    </p>
+    <div class="flex justify-center gap-1 py-1.5">
+      <a
+        href="#"
+        class="text-[#0F6BFF]"
+      >
+        Compare Dog DNA Tests
+      </a>
+      {% render 'icon-arrow-right' %}
+    </div>
   </div>
 </div>
-
 <!-- Swiper CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -89,5 +103,8 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+  }
+  .dual-bg {
+    background: linear-gradient(to bottom, white 554px, #def4fa 554px);
   }
 </style>
