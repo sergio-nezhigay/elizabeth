@@ -34,7 +34,7 @@
   {% if badge_text != blank %}
     <div class="absolute top-0 left-0 z-10 h-fit">
       <div class="inline-block {{ badge_color }} text-white h-6  font-semibold  custom-rounded">
-        {{ badge_text }} k K
+        {{ badge_text }}
       </div>
     </div>
   {% endif %}
@@ -43,10 +43,11 @@
   <div class="relative mb-6 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg overflow-hidden h-48 flex-shrink-0">
     {% if product.featured_image %}
       <img
-        src="{{ product.featured_image | img_url: '400x400' }}"
+        src="{{ product.featured_image | image_url: width: 312 }}"
         alt="{{ product.featured_image.alt | escape }}"
         class="w-full h-full object-cover"
-        loading="lazy"
+        width="312"
+        height="252"
       >
     {% else %}
       <div class="w-full h-full flex items-center justify-center">

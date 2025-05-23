@@ -6,22 +6,22 @@
 }
 {% endschema %}
 
-<div x-data="{ animal: 'cat' }" class="py-12 bg-blue-50">
-  <div class="max-w-7xl mx-auto px-4 text-center">
+<div x-data="{ animal: 'cat' }" class="pt-[30px]">
+  <div class="mx-auto">
     <!-- Tabs -->
-    <div class="flex justify-center mb-8 relative w-fit mx-auto">
-      {% render 'animal-tab-button',
-        animal_type: 'dog',
-        animal_label: 'Dog',
-        icon: 'icon-dog',
-        underline_direction: 'underline-animate-right'
-      %}
-      {% render 'animal-tab-button',
-        animal_type: 'cat',
-        animal_label: 'Cat',
-        icon: 'icon-cat',
-        underline_direction: 'underline-animate-left'
-      %}
+    <div class="relative w-full buttons-line">
+      <div class="flex justify-center mx-auto md:w-fit mb-[60px]">
+        {% render 'animal-tab-button',
+          animal_type: 'dog',
+          animal_label: 'Dog',
+          underline_direction: 'underline-animate-right'
+        %}
+        {% render 'animal-tab-button',
+          animal_type: 'cat',
+          animal_label: 'Cat',
+          underline_direction: 'underline-animate-left'
+        %}
+      </div>
     </div>
 
     <div class="relative">
@@ -30,10 +30,11 @@
       <div
         x-show="animal === 'cat'"
         x-transition.opacity.duration.1000ms
-        class="swiper pricingSwiper mb-8 !absolute inset-0 h-fit"
+        :class="animal !== 'cat' && '!absolute inset-0'"
+        class="swiper pricingSwiper mb-8 h-fit"
         x-cloak
       >
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper mx-auto !w-fit">
           {% for product in collections['cat-products'].products %}
             {% render 'animal-card', product: product %}
           {% endfor %}
@@ -44,10 +45,11 @@
       <div
         x-show="animal === 'dog'"
         x-transition.opacity.duration.1000ms
-        class="swiper pricingSwiper mb-8 !absolute inset-0 h-fit"
+        :class="animal !== 'dog' && '!absolute inset-0'"
+        class="swiper pricingSwiper mb-8 h-fit"
         x-cloak
       >
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper !w-fit mx-auto">
           {% for product in collections['dog-products'].products %}
             {% render 'animal-card', product: product %}
           {% endfor %}
@@ -76,10 +78,16 @@
 </script>
 
 <style>
-  .filter-blue {
-    filter: invert(32%) sepia(98%) saturate(7497%) hue-rotate(212deg) brightness(97%) contrast(101%);
-  }
-  .filter-gray {
-    filter: grayscale(1) brightness(0.7);
+  .buttons-line::before {
+    content: '';
+    display: block;
+    width: calc(100% - 60px);
+    height: 2px;
+    background-color: #bdc2c6;
+    transition: transform 0.3s ease;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 </style>
