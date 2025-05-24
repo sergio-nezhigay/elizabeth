@@ -8,18 +8,5 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "featured-collection": {
-      "type": "featured-collection",
-      "settings": {
-        "badge_popular_bg_color": "#ca4f27",
-        "badge_popular_text_color": "#353eca",
-        "badge_best_value_bg_color": "#101011",
-        "badge_best_value_text_color": "#ffffff"
-      }
-    }
-  },
-  "order": [
-    "featured-collection"
-  ]
+  "markets": {}
 }
