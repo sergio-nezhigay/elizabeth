@@ -18,7 +18,8 @@
             "product": "optimal-selection-advanced",
             "alt_title": "Updated Title",
             "alt_image": "shopify://shop_images/small-brown-dog-sits-on-a-white-couch.jpg",
-            "group": "dog"
+            "group": "dog",
+            "features": "Feature 1\nFeature 2"
           }
         },
         "product_entry_63PUFr": {
@@ -26,7 +27,8 @@
           "settings": {
             "product": "optimal-selection-advanced-1",
             "alt_title": "",
-            "group": "cat"
+            "group": "cat",
+            "features": ""
           }
         },
         "product_entry_Vfiear": {
@@ -34,7 +36,8 @@
           "settings": {
             "product": "optimal-selection-standard-1",
             "alt_title": "",
-            "group": "cat"
+            "group": "cat",
+            "features": ""
           }
         },
         "product_entry_VkQ7Ec": {
@@ -42,7 +45,8 @@
           "settings": {
             "product": "optimal-selection-standard",
             "alt_title": "",
-            "group": "dog"
+            "group": "dog",
+            "features": ""
           }
         },
         "product_entry_dYhmgi": {
@@ -50,7 +54,8 @@
           "settings": {
             "product": "optimal-selection-litter-pack-1",
             "alt_title": "",
-            "group": "cat"
+            "group": "cat",
+            "features": ""
           }
         },
         "product_entry_UQcb46": {
@@ -58,7 +63,8 @@
           "settings": {
             "product": "optimal-selection-litter-pack",
             "alt_title": "",
-            "group": "dog"
+            "group": "dog",
+            "features": ""
           }
         }
       },
