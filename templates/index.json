@@ -28,22 +28,6 @@
             "group": "cat"
           }
         },
-        "product_entry_dYhmgi": {
-          "type": "product_entry",
-          "settings": {
-            "product": "optimal-selection-litter-pack-1",
-            "alt_title": "",
-            "group": "cat"
-          }
-        },
-        "product_entry_UQcb46": {
-          "type": "product_entry",
-          "settings": {
-            "product": "optimal-selection-litter-pack",
-            "alt_title": "",
-            "group": "dog"
-          }
-        },
         "product_entry_Vfiear": {
           "type": "product_entry",
           "settings": {
@@ -59,15 +43,31 @@
             "alt_title": "",
             "group": "dog"
           }
+        },
+        "product_entry_dYhmgi": {
+          "type": "product_entry",
+          "settings": {
+            "product": "optimal-selection-litter-pack-1",
+            "alt_title": "",
+            "group": "cat"
+          }
+        },
+        "product_entry_UQcb46": {
+          "type": "product_entry",
+          "settings": {
+            "product": "optimal-selection-litter-pack",
+            "alt_title": "",
+            "group": "dog"
+          }
         }
       },
       "block_order": [
         "product_entry_nwwBLM",
         "product_entry_63PUFr",
-        "product_entry_dYhmgi",
-        "product_entry_UQcb46",
         "product_entry_Vfiear",
-        "product_entry_VkQ7Ec"
+        "product_entry_VkQ7Ec",
+        "product_entry_dYhmgi",
+        "product_entry_UQcb46"
       ],
       "settings": {
         "badge_popular_bg_color": "#ca4f27",
