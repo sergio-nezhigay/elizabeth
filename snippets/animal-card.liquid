@@ -26,7 +26,7 @@
   endcase
 %}
 
-<div class="swiper-slide animal-card relative bg-white rounded-[20px] shadow-[0px_2px_8px_rgba(16,16,17,0.15)] duration-200 py-10 px-[25px] h-full flex flex-col">
+<li class="swiper-slide animal-card relative bg-white rounded-[20px] shadow-[0px_2px_8px_rgba(16,16,17,0.15)] duration-200 py-10 px-[25px] h-full flex flex-col">
   {% comment %} Badge {% endcomment %}
   {% if badge_text != blank %}
     <div class="absolute top-0 left-0 z-10 h-fit">
@@ -45,7 +45,7 @@
   </h3>
 
   {% comment %} Product Image {% endcomment %}
-  <div class="relative mb-4 bg-gradient-to-br from-orange-100 to-orange-200 flex-shrink-0">
+  <div class="relative mb-4 bg-primary-bg flex-shrink-0">
     {% if alt_image %}
       <img
         src="{{ alt_image | image_url: width: 312 }}"
@@ -64,12 +64,6 @@
         height="252"
         loading="lazy"
       >
-    {% else %}
-      <div class="w-full h-full flex items-center justify-center">
-        <svg class="w-16 h-16 text-orange-300" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
-        </svg>
-      </div>
     {% endif %}
   </div>
 
@@ -129,27 +123,40 @@
     </form>
   </div>
 
+  {% comment %}{% assign features = section.settings.features_list | newline_to_br | split: '<br />' %}{% endcomment %}
+
   {% comment %} Features List {% endcomment %}
-  {% if product.metafields.custom.features %}
-    <div class="space-y-4">
-      {% assign features = product.metafields.custom.features.value %}
+  {% if features and features.size > 0 %}
+    <ul class="space-y-4 mb-4">
       {% for feature in features %}
         <div class="flex items-start gap-2">
           {% render 'icon-checklist' %}
           <span>{{ feature }}</span>
         </div>
       {% endfor %}
+    </ul>
+  {% else %}
+    {% if product.metafields.custom.features %}
+      <ul class="space-y-4 mb-4">
+        {% assign meta_features = product.metafields.custom.features.value %}
+        {% for meta_feature in meta_features %}
+          <li class="flex items-start gap-2">
+            {% render 'icon-checklist' %}
+            <span>{{ meta_feature }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endif %}
 
-      {% comment %} Learn more link {% endcomment %}
-      {% if product.url %}
-        <div class="flex items-start gap-2">
-          {% render 'icon-checklist' %}
-          <a href="{{ product.url }}" class="text-primary-blue"> Learn more </a>
-        </div>
-      {% endif %}
+  {% comment %} Learn more link {% endcomment %}
+  {% if product.url %}
+    <div class="flex items-start gap-2">
+      {% render 'icon-checklist' %}
+      <a href="{{ product.url }}" class="text-primary-blue"> Learn more </a>
     </div>
   {% endif %}
-</div>
+</li>
 
 {% comment %} JavaScript for variant switching {% endcomment %}
 <script>

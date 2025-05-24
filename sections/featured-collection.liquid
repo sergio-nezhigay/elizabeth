@@ -60,6 +60,12 @@
             { "value": "cat", "label": "Cat" }
           ],
           "default": "dog"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Product Features (one per line)",
+          "info": "Enter one feature per line"
         }
       ]
     }
@@ -68,10 +74,11 @@
 }
 {% endschema %}
 
-<div
+<section
   x-data="{ animal: 'dog' }"
   class="pt-[30px] font-medium text-text-primary text-[14px] leading-[20px] tracking-[0.25px] dual-bg"
 >
+  <h1 class="sr-only">Featured collection</h1>
   <div class="mx-auto">
     <!-- Tabs -->
     <div class="relative w-full buttons-line">
@@ -103,10 +110,12 @@
           {% for block in section.blocks %}
             {% assign product = all_products[block.settings.product] %}
             {% if product and block.settings.group == 'cat' %}
-              {% render 'animal-card',
+              {%
+                render 'animal-card',
                 product: product,
                 alt_title: block.settings.alt_title,
                 alt_image: block.settings.alt_image
+                features: block.settings.features | split: '<br />'
               %}
             {% endif %}
           {% endfor %}
@@ -121,18 +130,20 @@
         class="swiper pricingSwiper h-fit"
         x-cloak
       >
-        <div class="swiper-wrapper !w-fit mx-auto pt-[60px] pb-8 px-[30px]">
+        <ul class="swiper-wrapper !w-fit mx-auto pt-[60px] pb-8 px-[30px]">
           {% for block in section.blocks %}
             {% assign product = all_products[block.settings.product] %}
+            {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
             {% if product and block.settings.group == 'dog' %}
               {% render 'animal-card',
                 product: product,
                 alt_title: block.settings.alt_title,
-                alt_image: block.settings.alt_image
+                alt_image: block.settings.alt_image,
+                features: features
               %}
             {% endif %}
           {% endfor %}
-        </div>
+        </ul>
       </div>
     </div>
     <p class="text-[21px] leading-7 font-normal flex justify-center tracking-normal mb-2">
@@ -148,7 +159,7 @@
       {% render 'icon-arrow-right' %}
     </div>
   </div>
-</div>
+</section>
 <!-- Swiper CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
