@@ -898,6 +898,9 @@
   .p-5 {
     padding: calc(var(--spacing) * 5);
   }
+  .\!px-\[30px\] {
+    padding-inline: 30px !important;
+  }
   .px-1 {
     padding-inline: calc(var(--spacing) * 1);
   }
@@ -969,6 +972,9 @@
   }
   .py-\[14px\] {
     padding-block: 14px;
+  }
+  .\!pt-\[60px\] {
+    padding-top: 60px !important;
   }
   .pt-1 {
     padding-top: calc(var(--spacing) * 1);

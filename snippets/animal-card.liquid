@@ -33,6 +33,7 @@
       <span
         class="inline-block text-center h-6 w-[130px] custom-rounded"
         style="background-color: {{ badge_bg_color }}; color: {{ badge_text_color }};"
+        role="status"
       >
         {{ badge_text }}
       </span>
@@ -69,7 +70,9 @@
 
   {% if product.variants.size > 1 %}
     <div class="pt-1 mb-5 relative">
+      <label for="variant-select-{{ product.id }}" class="sr-only">Choose a variant</label>
       <select
+        id="variant-select-{{ product.id }}"
         class="w-full py-[14px] px-3 pr-10 border border-[#cccccc] text-[16px] leading-6 tracking-widest bg-primary-bg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent font-normal appearance-none"
         onchange="updateVariant(this, '{{ product.id }}')"
       >
