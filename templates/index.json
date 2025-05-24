@@ -16,7 +16,8 @@
           "type": "product_entry",
           "settings": {
             "product": "optimal-selection-advanced",
-            "alt_title": "",
+            "alt_title": "Updated Title",
+            "alt_image": "shopify://shop_images/small-brown-dog-sits-on-a-white-couch.jpg",
             "group": "dog"
           }
         },
