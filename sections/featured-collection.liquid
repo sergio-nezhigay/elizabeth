@@ -1,7 +1,37 @@
 {% schema %}
 {
   "name": "Pricing Plans",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Badge Settings"
+    },
+
+    {
+      "type": "color",
+      "id": "badge_popular_bg_color",
+      "label": "Badge: Popular Background Color",
+      "default": "#CA4F27"
+    },
+    {
+      "type": "color",
+      "id": "badge_popular_text_color",
+      "label": "Badge: Popular Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "badge_best_value_bg_color",
+      "label": "Badge: Best Value Background Color",
+      "default": "#101011"
+    },
+    {
+      "type": "color",
+      "id": "badge_best_value_text_color",
+      "label": "Badge: Best Value Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
   "presets": [{ "name": "Pricing Plans" }]
 }
 {% endschema %}

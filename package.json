@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"shopify theme dev\" \"npx tailwindcss -i ./src/tailwind.css -o ./assets/application.css --watch\""
+    "dev": "concurrently \"shopify theme dev\" \"npx tailwindcss -i ./src/tailwind.css -o ./assets/application.css --watch\"",
+    "s": "shopify theme dev",
+    "c": "npx tailwindcss -i ./src/tailwind.css -o ./assets/application.css --watch"
   },
   "repository": {
     "type": "git",

@@ -7,15 +7,16 @@
   case product.metafields.custom.card_style
     when 'popular'
       assign badge_text = 'Most popular'
-      assign badge_color = 'bg-orange-500'
-
+      assign badge_bg_color = section.settings.badge_popular_bg_color | default: '#CA4F27'
+      assign badge_text_color = section.settings.badge_popular_text_color | default: '#FFFFFF'
     when 'best_value'
       assign badge_text = 'Best value'
-      assign badge_color = 'bg-gray-900'
-
+      assign badge_bg_color = section.settings.badge_best_value_bg_color | default: '#101011'
+      assign badge_text_color = section.settings.badge_best_value_text_color | default: '#FFFFFF'
     else
       assign badge_text = ''
-      assign badge_color = ''
+      assign badge_bg_color = ''
+      assign badge_text_color = ''
   endcase
 %}
 
@@ -23,7 +24,10 @@
   {% comment %} Badge {% endcomment %}
   {% if badge_text != blank %}
     <div class="absolute top-0 left-0 z-10 h-fit">
-      <span class="inline-block {{ badge_color }} text-white text-center h-6 w-[130px]  custom-rounded">
+      <span
+        class="inline-block text-center h-6 w-[130px] custom-rounded"
+        style="background-color: {{ badge_bg_color }}; color: {{ badge_text_color }};"
+      >
         {{ badge_text }}
       </span>
     </div>
