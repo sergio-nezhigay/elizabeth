@@ -6,30 +6,62 @@
       "type": "header",
       "content": "Badge Settings"
     },
-
     {
       "type": "color",
       "id": "badge_popular_bg_color",
-      "label": "Badge: Popular Background Color",
+      "label": "Popular Badge Background Color",
       "default": "#CA4F27"
     },
     {
       "type": "color",
       "id": "badge_popular_text_color",
-      "label": "Badge: Popular Text Color",
+      "label": "Popular Badge Text Color",
       "default": "#FFFFFF"
     },
     {
       "type": "color",
       "id": "badge_best_value_bg_color",
-      "label": "Badge: Best Value Background Color",
+      "label": "Best Value Badge Background Color",
       "default": "#101011"
     },
     {
       "type": "color",
       "id": "badge_best_value_text_color",
-      "label": "Badge: Best Value Text Color",
+      "label": "Best Value Badge Text Color",
       "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_entry",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        },
+        {
+          "type": "text",
+          "id": "alt_title",
+          "label": "Alternative title (optional)"
+        },
+        {
+          "type": "image_picker",
+          "id": "alt_image",
+          "label": "Alternative product image (optional)"
+        },
+        {
+          "type": "select",
+          "id": "group",
+          "label": "Group",
+          "options": [
+            { "value": "dog", "label": "Dog" },
+            { "value": "cat", "label": "Cat" }
+          ],
+          "default": "dog"
+        }
+      ]
     }
   ],
   "presets": [{ "name": "Pricing Plans" }]
@@ -38,7 +70,7 @@
 
 <div
   x-data="{ animal: 'dog' }"
-  class="pt-[30px] font-medium text-[#101011] text-[14px] leading-[20px] tracking-[0.25px] dual-bg"
+  class="pt-[30px] font-medium text-text-primary text-[14px] leading-[20px] tracking-[0.25px] dual-bg"
 >
   <div class="mx-auto">
     <!-- Tabs -->
@@ -68,8 +100,15 @@
         x-cloak
       >
         <div class="swiper-wrapper !w-fit mx-auto pt-[60px] pb-8 px-[30px]">
-          {% for product in collections['cat-products'].products %}
-            {% render 'animal-card', product: product %}
+          {% for block in section.blocks %}
+            {% assign product = all_products[block.settings.product] %}
+            {% if product and block.settings.group == 'cat' %}
+              {% render 'animal-card',
+                product: product,
+                alt_title: block.settings.alt_title,
+                alt_image: block.settings.alt_image
+              %}
+            {% endif %}
           {% endfor %}
         </div>
       </div>
@@ -83,8 +122,15 @@
         x-cloak
       >
         <div class="swiper-wrapper !w-fit mx-auto pt-[60px] pb-8 px-[30px]">
-          {% for product in collections['dog-products'].products %}
-            {% render 'animal-card', product: product %}
+          {% for block in section.blocks %}
+            {% assign product = all_products[block.settings.product] %}
+            {% if product and block.settings.group == 'dog' %}
+              {% render 'animal-card',
+                product: product,
+                alt_title: block.settings.alt_title,
+                alt_image: block.settings.alt_image
+              %}
+            {% endif %}
           {% endfor %}
         </div>
       </div>
@@ -95,7 +141,7 @@
     <div class="flex justify-center gap-1 py-1.5">
       <a
         href="#"
-        class="text-[#0F6BFF]"
+        class="text-primary-blue"
       >
         Compare Dog DNA Tests
       </a>
@@ -105,7 +151,7 @@
 </div>
 <!-- Swiper CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {

@@ -3,16 +3,22 @@
   Usage: {% render 'product-card', product: product %}
 {% endcomment %}
 
+{% comment %}
+  Accepts alt_title and badge_style as optional params for block-based rendering
+  Accepts alt_image as an optional param for alternative product image
+{% endcomment %}
+
 {% liquid
-  case product.metafields.custom.card_style
+  assign card_style = badge_style | default: product.metafields.custom.card_style
+  case card_style
     when 'popular'
       assign badge_text = 'Most popular'
-      assign badge_bg_color = section.settings.badge_popular_bg_color | default: '#CA4F27'
-      assign badge_text_color = section.settings.badge_popular_text_color | default: '#FFFFFF'
+      assign badge_bg_color = section.settings.badge_popular_bg_color | default: 'var(--color-badge-popular-bg)'
+      assign badge_text_color = section.settings.badge_popular_text_color | default: 'var(--color-badge-popular-text)'
     when 'best_value'
       assign badge_text = 'Best value'
-      assign badge_bg_color = section.settings.badge_best_value_bg_color | default: '#101011'
-      assign badge_text_color = section.settings.badge_best_value_text_color | default: '#FFFFFF'
+      assign badge_bg_color = section.settings.badge_best_value_bg_color | default: 'var(--color-text-primary)'
+      assign badge_text_color = section.settings.badge_best_value_text_color | default: 'var(--color-badge-best-value-text)'
     else
       assign badge_text = ''
       assign badge_bg_color = ''
@@ -20,7 +26,7 @@
   endcase
 %}
 
-<div class="swiper-slide relative bg-white rounded-[20px] shadow-[0px_2px_8px_rgba(16,16,17,0.15)] duration-200 py-10 px-[25px] h-full flex flex-col">
+<div class="swiper-slide animal-card relative bg-white rounded-[20px] shadow-[0px_2px_8px_rgba(16,16,17,0.15)] duration-200 py-10 px-[25px] h-full flex flex-col">
   {% comment %} Badge {% endcomment %}
   {% if badge_text != blank %}
     <div class="absolute top-0 left-0 z-10 h-fit">
@@ -34,17 +40,26 @@
   {% endif %}
 
   {% comment %} Product Title {% endcomment %}
-  <h3 class="text-[21px] leading-7 mb-4 line-clamp-2 tracking-normal">
-    {{ product.title }}
+  <h3 class="text-[21px] leading-7 mb-4 tracking-normal">
+    {{ alt_title | default: product.title }}
   </h3>
 
   {% comment %} Product Image {% endcomment %}
   <div class="relative mb-4 bg-gradient-to-br from-orange-100 to-orange-200 flex-shrink-0">
-    {% if product.featured_image %}
+    {% if alt_image %}
+      <img
+        src="{{ alt_image | image_url: width: 312 }}"
+        alt="{{ alt_title | default: product.title | escape }}"
+        class="w-full h-[252px] object-cover"
+        width="312"
+        height="252"
+        loading="lazy"
+      >
+    {% elsif product.featured_image %}
       <img
         src="{{ product.featured_image | image_url: width: 312 }}"
         alt="{{ product.featured_image.alt | escape }}"
-        class="w-full h-full object-cover"
+        class="w-full h-[252px] object-cover"
         width="312"
         height="252"
         loading="lazy"
@@ -61,7 +76,7 @@
   {% if product.variants.size > 1 %}
     <div class="pt-1 mb-5 relative">
       <select
-        class="w-full py-[14px] px-3 pr-10 border border-[#cccccc] text-[16px] leading-6 tracking-widest bg-[#f6f6f6] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-normal appearance-none"
+        class="w-full py-[14px] px-3 pr-10 border border-[#cccccc] text-[16px] leading-6 tracking-widest bg-primary-bg focus:outline-none focus:ring-2 focus:ring-primary-blue focus:border-transparent font-normal appearance-none"
         onchange="updateVariant(this, '{{ product.id }}')"
       >
         {% for variant in product.variants %}
@@ -84,10 +99,10 @@
         <span>
           {{ product.compare_at_price | money }}
         </span>
-        <span class="text-[#636364]">(${{ product.price | divided_by: 100.0 | round }}/test)</span>
+        <span class="text-primary-gray price">(${{ product.price | divided_by: 100.0 | round }}/test)</span>
       </div>
     {% else %}
-      <span class="">
+      <span class="price">
         {{ product.price | money }}
       </span>
     {% endif %}
@@ -100,7 +115,7 @@
 
       <button
         type="submit"
-        class="bg-[#0F6BFF] text-white py-[10px] px-[47px] rounded-[20px] transition-colors duration-200 flex items-center justify-center gap-2"
+        class="bg-primary-blue text-white py-[10px] px-[47px] rounded-[20px] transition-colors duration-200 flex items-center justify-center gap-2"
         {% unless product.available %}
           disabled
         {% endunless %}
@@ -129,7 +144,7 @@
       {% if product.url %}
         <div class="flex items-start gap-2">
           {% render 'icon-checklist' %}
-          <a href="{{ product.url }}" class="text-[#0F6BFF]"> Learn more </a>
+          <a href="{{ product.url }}" class="text-primary-blue"> Learn more </a>
         </div>
       {% endif %}
     </div>
@@ -141,13 +156,13 @@
   function updateVariant(select, productId) {
     const selectedOption = select.options[select.selectedIndex];
     const newPrice = selectedOption.dataset.price;
-    const priceElement = select.closest('.product-card').querySelector('.price');
+    const card = select.closest('.animal-card');
+    const priceElement = card && card.querySelector('.price');
     if (priceElement && newPrice) {
       priceElement.textContent = newPrice;
     }
 
-    // Update hidden input
-    const hiddenInput = select.closest('form').querySelector('input[name="id"]');
+    const hiddenInput = card && card.querySelector('input[name="id"]');
     if (hiddenInput) {
       hiddenInput.value = selectedOption.value;
     }
@@ -155,17 +170,9 @@
 </script>
 
 <style>
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
   .swiper-slide {
     width: 362px !important;
     height: auto !important;
-    display: flex;
-    justify-content: center;
   }
   .custom-rounded {
     border-top-left-radius: 20px;
