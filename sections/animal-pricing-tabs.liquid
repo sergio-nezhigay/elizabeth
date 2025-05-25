@@ -39,7 +39,7 @@
                   render 'animal-card',
                   product: product,
                   alt_title: block.settings.alt_title,
-                  alt_image: block.settings.alt_image
+                  alt_image: block.settings.alt_image,
                   features: block.settings.features | split: '<br />'
                 %}
               {% endif %}
@@ -90,45 +90,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.pricingSwiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 64,
-      breakpoints: {
-        768: {
-          slidesPerView: 'auto',
-        },
-      },
-    });
-  });
-</script>
-
-<style>
-  .buttons-line::before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #bdc2c6;
-    transition: transform 0.3s ease;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .dual-bg {
-    background: linear-gradient(to bottom, white 554px, #def4fa 554px);
-  }
-</style>
+<script src="{{ 'animal-pricing-tabs.js' | asset_url }}" defer></script>
+{{ 'animal-pricing-tabs.css' | asset_url | stylesheet_tag }}
 
 {% schema %}
 {
-  "name": "Pricing Plans",
+  "name": "Animal Pricing Tabs",
   "settings": [
     {
       "type": "header",
-      "content": "Badge Settings"
+      "content": "Animal Pricing Tabs Settings"
     },
     {
       "type": "color",
@@ -194,6 +165,6 @@
       ]
     }
   ],
-  "presets": [{ "name": "Pricing Plans" }]
+  "presets": [{ "name": "Animal Pricing Tabs Settings" }]
 }
 {% endschema %}

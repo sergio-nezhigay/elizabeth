@@ -10,7 +10,7 @@
 {
   "sections": {
     "featured-collection": {
-      "type": "featured-collection",
+      "type": "animal-pricing-tabs",
       "blocks": {
         "product_entry_nwwBLM": {
           "type": "product_entry",
@@ -84,7 +84,5 @@
       }
     }
   },
-  "order": [
-    "featured-collection"
-  ]
+  "order": ["featured-collection"]
 }
