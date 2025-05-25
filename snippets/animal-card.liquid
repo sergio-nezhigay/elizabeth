@@ -106,13 +106,13 @@
   </div>
 
   {% comment %} Add to Cart Button {% endcomment %}
-  <div class="mb-6">
+  <div class="mb-4">
     <form action="/cart/add" method="post" enctype="multipart/form-data" class="w-full">
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
       <button
         type="submit"
-        class="bg-primary-blue text-white py-[10px] px-[47px] rounded-[20px] transition-colors duration-200 flex items-center justify-center gap-2"
+        class="bg-primary-blue hover:bg-[#3683ff] hover:cursor-pointer text-white py-[10px] px-[47px] rounded-[20px] transition-colors duration-200 flex items-center justify-center gap-2"
         {% unless product.available %}
           disabled
         {% endunless %}
@@ -126,13 +126,11 @@
     </form>
   </div>
 
-  {% comment %}{% assign features = section.settings.features_list | newline_to_br | split: '<br />' %}{% endcomment %}
-
   {% comment %} Features List {% endcomment %}
   {% if features and features.size > 0 %}
-    <ul class="space-y-4 mb-4">
+    <ul class="">
       {% for feature in features %}
-        <div class="flex items-start gap-2">
+        <div class="flex items-start gap-2 py-2">
           {% render 'icon-checklist' %}
           <span>{{ feature }}</span>
         </div>
@@ -140,10 +138,10 @@
     </ul>
   {% else %}
     {% if product.metafields.custom.features %}
-      <ul class="space-y-4 mb-4">
+      <ul class="">
         {% assign meta_features = product.metafields.custom.features.value %}
         {% for meta_feature in meta_features %}
-          <li class="flex items-start gap-2">
+          <li class="flex items-start gap-2 py-2">
             {% render 'icon-checklist' %}
             <span>{{ meta_feature }}</span>
           </li>
@@ -154,7 +152,7 @@
 
   {% comment %} Learn more link {% endcomment %}
   {% if product.url %}
-    <div class="flex items-start gap-2">
+    <div class="flex items-start gap-2 py-2 ">
       {% render 'icon-checklist' %}
       <a href="{{ product.url }}" class="text-primary-blue"> Learn more </a>
     </div>
@@ -189,5 +187,13 @@
     border-bottom-left-radius: 0;
     border-top-right-radius: 0rem;
     border-bottom-right-radius: 20px;
+  }
+
+  .animal-card {
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .animal-card:hover {
+    box-shadow: 0px 8px 24px rgba(16, 16, 17, 0.18);
+    transform: translateY(-6px) scale(1.02);
   }
 </style>

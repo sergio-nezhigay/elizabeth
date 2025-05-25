@@ -1,7 +1,9 @@
 <button
   @click="animal = '{{ animal_type }}'"
-  class="w-full md:w-[236px] pt-5 pb-3 text-[21px] leading-7 font-semibold transition-colors duration-300 flex flex-col items-center justify-center gap-2 relative underline-animate {{ underline_direction }}"
-  :class="animal === '{{ animal_type }}' ? 'text-[#0055b8] underline-animate-active' : 'text-[#8c8c8c]'"
+  class="w-full md:w-[236px] pt-5 pb-3 text-[21px] leading-7 font-semibold transition-colors duration-300 flex flex-col items-center justify-center gap-2 relative underline-animate {{ underline_direction }} hover:text-secondary-blue hover:cursor-pointer"
+  :class="animal === '{{ animal_type }}' ? 'text-secondary-blue underline-animate-active' : 'text-secondary-gray'"
+  :aria-pressed="animal === '{{ animal_type }}'"
+  :aria-label="{{ animal_label | json }}"
 >
   {% case animal_type %}
     {% when 'dog' %}
