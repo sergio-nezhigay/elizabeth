@@ -14,13 +14,16 @@ function updateVariant(select) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  new Swiper('.pricingSwiper', {
-    slidesPerView: 'auto',
-    spaceBetween: 64,
-    breakpoints: {
-      768: {
-        slidesPerView: 'auto',
+  const swiperElements = document.querySelectorAll('.pricingSwiper');
+  swiperElements.forEach((el) => {
+    new Swiper(el, {
+      slidesPerView: 'auto',
+      spaceBetween: 64,
+      breakpoints: {
+        768: {
+          slidesPerView: 'auto',
+        },
       },
-    },
+    });
   });
 });

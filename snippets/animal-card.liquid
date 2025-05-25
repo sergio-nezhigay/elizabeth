@@ -1,12 +1,8 @@
-{% comment %}
-  Animal Card Snippet
-  Usage: {% render 'product-card', product: product %}
-{% endcomment %}
-
-{% comment %}
-  Accepts alt_title and badge_style as optional params for block-based rendering
-  Accepts alt_image as an optional param for alternative product image
-{% endcomment %}
+{%- comment -%}
+  animal-card.liquid
+  Usage: Renders a product card with badge, image, price, add-to-cart, features, and learn more link.
+  Include with: {% render 'animal-card', product: product, ... %}
+{%- endcomment -%}
 
 {% liquid
   assign card_style = badge_style | default: product.metafields.custom.card_style
@@ -128,17 +124,17 @@
 
   {% comment %} Features List {% endcomment %}
   {% if features and features.size > 0 %}
-    <ul class="">
+    <ul>
       {% for feature in features %}
-        <div class="flex items-start gap-2 py-2">
+        <li class="flex items-start gap-2 py-2">
           {% render 'icon-checklist' %}
           <span>{{ feature }}</span>
-        </div>
+        </li>
       {% endfor %}
     </ul>
   {% else %}
     {% if product.metafields.custom.features %}
-      <ul class="">
+      <ul>
         {% assign meta_features = product.metafields.custom.features.value %}
         {% for meta_feature in meta_features %}
           <li class="flex items-start gap-2 py-2">
