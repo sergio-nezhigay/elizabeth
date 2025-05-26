@@ -22,6 +22,26 @@
             "features": "Feature 1\nFeature 2"
           }
         },
+        "product_entry_cwmf49": {
+          "type": "product_entry",
+          "settings": {
+            "product": "optimal-selection-advanced",
+            "alt_title": "Updated Title",
+            "alt_image": "shopify://shop_images/small-brown-dog-sits-on-a-white-couch.jpg",
+            "group": "dog",
+            "features": "Feature 1\nFeature 2"
+          }
+        },
+        "product_entry_Cfwp9H": {
+          "type": "product_entry",
+          "settings": {
+            "product": "optimal-selection-advanced",
+            "alt_title": "Updated Title",
+            "alt_image": "shopify://shop_images/small-brown-dog-sits-on-a-white-couch.jpg",
+            "group": "dog",
+            "features": "Feature 1\nFeature 2"
+          }
+        },
         "product_entry_63PUFr": {
           "type": "product_entry",
           "settings": {
@@ -70,6 +90,8 @@
       },
       "block_order": [
         "product_entry_nwwBLM",
+        "product_entry_cwmf49",
+        "product_entry_Cfwp9H",
         "product_entry_63PUFr",
         "product_entry_Vfiear",
         "product_entry_VkQ7Ec",
@@ -84,5 +106,7 @@
       }
     }
   },
-  "order": ["featured-collection"]
+  "order": [
+    "featured-collection"
+  ]
 }
